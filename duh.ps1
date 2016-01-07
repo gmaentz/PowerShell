@@ -1,0 +1,7 @@
+﻿New-ADGroup -Name "Executives" -SamAccountName Executives -GroupCategory Security -GroupScope Global -DisplayName "Executives" -Path "OU=TML Users,DC=dgse,DG=local"
+New-ADGroup -Name "Finance" -SamAccountName Finance -GroupCategory Security -GroupScope Global -DisplayName "Finance" -Path "OU=TML Users,DC=dgse,DG=local"
+New-ADGroup -Name "Legal" -SamAccountName Legal -GroupCategory Security -GroupScope Global -DisplayName "Legal" -Path "OU=TML Users,DC=dgse,DG=local"
+New-ADGroup -Name "Marketing" -SamAccountName Marketing -GroupCategory Security -GroupScope Global -DisplayName "Marketing" -Path "OU=TML Users,DC=dgse,DG=local"
+New-ADGroup -Name "Sales" -SamAccountName Sales -GroupCategory Security -GroupScope Global -DisplayName "Sales" -Path "OU=TML Users,DC=dgse,DG=local"
+New-ADGroup -Name "Technical Services" -SamAccountName "Technical Services" -GroupCategory Security -GroupScope Global -DisplayName "Technical Services" -Path "OU=TML Users,DC=dgse,DG=local"
+New-ADGroup -Name "Administration" -SamAccountName Administration -GroupCategory Security -GroupScope Global -DisplayName "Administration" -Path "OU=TML Users,DC=dgse,DG=local"
