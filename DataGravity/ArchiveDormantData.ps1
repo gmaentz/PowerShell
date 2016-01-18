@@ -72,7 +72,7 @@ Import-CSV $csvFilePath | ForEach-Object {
     #Create an Archive Stub if parameter was set
     if ($ArchiveStub) { 
         # Create a new "This file has been archived" text file
-        $archivedFilePath = "\\10.100.15.40\Sales$" + $deleteFilePath + ".archive.txt"
+        $archivedFilePath = $fullFilePath + ".archive.txt"
         Write-Host $archivedFilePath
         "This file has been deleted and archived by IT (on " + $date + ") " | Out-File $archivedFilePath -append
     }
