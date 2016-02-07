@@ -69,7 +69,7 @@ Import-CSV $csvFilePath | ForEach-Object {
     Write-Host $fullShareFilePath
     Write-Host $fullQuarantineFilePath
     
-    Move-item -verbose -path $fullShareFilePath -destination fullQuarantineFilePath -Force
+    Move-Item -verbose -path $fullShareFilePath -destination $fullQuarantineFilePath -Force
 
     $quarantineFileCount = $quarantineFileCount + 1
     "Quarantining $fullShareFilePath" | Out-File $logFile -append
