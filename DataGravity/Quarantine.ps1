@@ -67,12 +67,20 @@ Import-CSV $csvFilePath | ForEach-Object {
     $fullQuarantineFilePath = $QuarantineFilePath+$shortFilePath
 
     Write-Host $fullShareFilePath
-    Write-Host $fullQuarantineFilePath
-    
+    Write-Host $fullQuarantineFilePath    
+
+    #Check to see if the Quarantine folder structure exists, and if not create it
+    $directoryPath = Split-Path $fullQuarantineFilePath
+    if(!(Test-Path $directoryPath))
+	{
+    		Write-Host "Directory Doesn't Exist....attempting to make"
+		New-Item -Path $directoryPath -ItemType Directory -Force | Out-Null
+	}
+
     Move-Item -verbose -path $fullShareFilePath -destination $fullQuarantineFilePath -Force
 
     $quarantineFileCount = $quarantineFileCount + 1
-    "Quarantining $fullShareFilePath" | Out-File $logFile -append
+    "Quarantining $fullShareFilePath to $fullQuarantineFilePath" | Out-File $logFile -append
 
     #Create an Archive Stub if parameter was set
     if ($ArchiveStub) { 
@@ -84,5 +92,4 @@ Import-CSV $csvFilePath | ForEach-Object {
     
     }
 
-Write-Host "Quarantined " $quarantineFileCount " files."  
-
+Write-Host "Quarantined " $quarantineFileCount " files."
