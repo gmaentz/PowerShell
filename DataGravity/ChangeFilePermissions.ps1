@@ -125,7 +125,7 @@ Import-CSV $csvFilePath | ForEach-Object {
         }
         Else
         {
-            Write-Host "Skip the file: $fullFilePath - Tag: $SensitiveTag not found"
+            #Write-Host "Skip the file: $fullFilePath - Tag: $SensitiveTag not found"
             "Skipping $fullFilePath - Tag: $SensitiveTag not found" | Out-File $logFile -append
             $SkippedFileCount = $SkippedFileCount + 1
         }
@@ -133,7 +133,7 @@ Import-CSV $csvFilePath | ForEach-Object {
     }
     Else
     {
-        Write-Host "Skip the file: $fullFilePath - No tags found"
+        #Write-Host "Skip the file: $fullFilePath - No tags found"
         "Skipping $fullFilePath - No tags found" | Out-File $logFile -append
         $SkippedFileCount = $SkippedFileCount + 1
     }
