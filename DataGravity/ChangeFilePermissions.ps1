@@ -1,8 +1,4 @@
 #########################################
-##  DataGravity Inc.
-##  October 2015 - Updated January 2016
-##  Secure files from exported CSV file
-##  Tested with DataGravity Software v2.2
 ##  Free to distribute and modify
 ##  THIS SCRIPT IS PROVIDED WITHOUT WARRANTY, ALWAYS FULLY BACK UP DATA BEFORE INVOKING ANY SCRIPT
 ##  ALWAYS VERIFY NO BLANK ROWS IN BETWEEN DATA IN CSV
@@ -12,11 +8,9 @@
 ## Instructions:
 ## 1) Use DataGravity UI to filter by files, dormant data, etc
 ## 2) Export CSV file
-## 3) Use Excel/OpenOffice if more filtering is needed, use commas only not ;
-## 4) Modify script paths
+## 3) Modify script paths
 ## 5) Run script
-## 6) Take Discovery Point and verify file deletion
-##
+## 6) Take Discovery Point and verify files secured
 ##
 ## Ex. ChangeFilePermissions.ps1 -ShareFilePath "\\CorporateDrive\Public" -csvFilePath "c:\temp\public.csv" -SensitiveTag "SS" -logFile "C:\Temp\FilesPermissionChanges.log"
 ##
@@ -66,7 +60,7 @@ Function CheckSensitiveTag ([string]$tags, [string]$sensitive)
  }
 
 #Secure the file.  Specify the file and operation used to secure it
-#Also logs the permissions both before and after the file has been secured    
+#Also logs the permissions both before file has been secured    
 Function SecureFile ([string]$file, [string]$operation)
 {
     # Secure the File
@@ -84,13 +78,7 @@ Function SecureFile ([string]$file, [string]$operation)
     $acl.SetAccessRule($accessRule)
     $acl | Set-Acl $file
 
-    #Log new permissions after securing - work in progress, as this typically results in Permission Denied
-    #after a file was secured.
-    #"New Permissions" | Out-File $logFile -append
-    #Get-Acl $file | Format-List | Out-File $logFile -append
-
  }
-
 
 
 ##########################################
@@ -125,7 +113,7 @@ Import-CSV $csvFilePath | ForEach-Object {
         }
         Else
         {
-            #Write-Host "Skip the file: $fullFilePath - Tag: $SensitiveTag not found"
+            Write-Host "Skip the file: $fullFilePath - Tag: $SensitiveTag not found"
             "Skipping $fullFilePath - Tag: $SensitiveTag not found" | Out-File $logFile -append
             $SkippedFileCount = $SkippedFileCount + 1
         }
@@ -133,7 +121,7 @@ Import-CSV $csvFilePath | ForEach-Object {
     }
     Else
     {
-        #Write-Host "Skip the file: $fullFilePath - No tags found"
+        Write-Host "Skip the file: $fullFilePath - No tags found"
         "Skipping $fullFilePath - No tags found" | Out-File $logFile -append
         $SkippedFileCount = $SkippedFileCount + 1
     }
