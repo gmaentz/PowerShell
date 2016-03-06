@@ -2,10 +2,7 @@
 ##  Free to distribute and modify
 ##  THIS SCRIPT IS PROVIDED WITHOUT WARRANTY, ALWAYS FULLY BACK UP DATA BEFORE INVOKING ANY SCRIPT
 ##  ALWAYS VERIFY NO BLANK ROWS IN BETWEEN DATA IN CSV
-##########################################
-
-##########################################
-## Instructions:
+##
 ## 1) Use DataGravity UI to filter by files, dormant data, etc
 ## 2) Export CSV file
 ## 3) Modify script paths
